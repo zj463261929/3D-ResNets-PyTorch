@@ -270,3 +270,9 @@ python main.py --root_path ~/data --video_path ucf101_videos/jpg --annotation_pa
 --pretrain_path models/resnet-34-kinetics.pth --ft_begin_index 4 \
 --model resnet --model_depth 34 --resnet_shortcut A --batch_size 128 --n_threads 4 --checkpoint 5
 ```
+
+备注：main.py中屏蔽assert opt.arch == model_data['arch']
+      model.load_state_dict(model_data['state_dict'])改成model.load_state_dict(model_data['state_dict'], strict=False)
+      generate_result_video.py中屏蔽   if os.path.exists('tmp'):
+                                            subprocess.call('rm -rf tmp', shell=True)代码。
+    
